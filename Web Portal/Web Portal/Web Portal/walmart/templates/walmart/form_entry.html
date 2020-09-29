@@ -1,0 +1,80 @@
+﻿{% extends "walmart/base.html" %}
+{% block content %}
+<h1>Vender Form</h1>
+<div class="form-group">
+    <label for="vendorName">Vendor Name in Retail Link</label>
+    <input type="text" class="form-control" name="vendorName" placeholder="Enter Vendor Name" value="{{ object.venderName }}">
+</div>
+
+<div class="form-group">
+    <label for="vendorNumber">Vendor Number in Retail Link</label>
+    <input type="text" class="form-control" name="vendorNumber" placeholder="Enter Vendor Number" value="{{ object.venderNumber}}">
+</div>
+
+<div class="form-group">
+    <label for="senderName">Sender Name</label>
+    <input type="text" class="form-control" name="senderName" placeholder="Enter Sender Name" value="{{ object.senderName }}">
+</div>
+
+<div class="form-group">
+    <label for="senderEmail">Sender Email</label>
+    <input type="email" class="form-control" name="senderEmail" placeholder="Enter Sender Email" value="{{ object.senderEmail }}">
+</div>
+
+<div class="form-group">
+    <label for="senderCountry">Sender Country of Origin</label>
+    <input type="text" class="form-control" name="senderCountry" placeholder="Enter Sender Country of Origin" value="{{ object.senderCountryOfOrigin }}">
+</div>
+
+<div class="form-group">
+    <label for="walmartBuyerName">Walmart Buyer Name</label>
+    <input type="text" class="form-control" name="walmartBuyerName" placeholder="Enter Walmart Buyer Name" value="{{ object.walmartBuyerName }}">
+</div>
+
+<div class="form-group">
+    <label for="upcEAN">UPC/EAN for Item Submitted</label>
+    <input type="text" class="form-control" name="upcEAN" placeholder="Enter UPC/EAN" value="{{ object.upcEAN }}">
+</div>
+
+<div class="form-group">
+    <label for="itemType">Item Type</label>
+    <select class="form-control" name="itemType">
+        <option value="">Select Type</option>
+        <option value="apparel" {% if object.itemType == "apparel" %} selected {% endif %}>Apparel</option>
+        <option value="accessories" {% if object.itemType == "accessories" %} selected {% endif %}>Accessories</option>
+        <option value="sunglasses" {% if object.itemType == "sunglasses" %} selected {% endif %}>Sunglasses</option>
+        <option value="footwear" {% if object.itemType == "footwear" %} selected {% endif %}>Footwear</option>
+        <option value="jewelry" {% if object.itemType == "jewelry" %} selected {% endif %}>Jewelry</option>
+    </select>
+</div>
+
+<div class="form-group">
+    <label for="departmentNumber">Department Number</label>
+    <input type="text" class="form-control" name="departmentNumber" placeholder="Enter Department Number" value="{{ object.departmentNumber }}">
+</div>
+
+<div class="form-group">
+    <label for="inlaySpec">Auburn Spec for Inlay Used</label>
+    <select class="form-control" name="inlaySpec">
+        <option value="" {% if object.inlaySpec == "" %} selected {% endif %}>Select Spec</option>
+        <option value="w1" {% if object.inlaySpec == "w1" %} selected {% endif %}>W1</option>
+        <option value="w2" {% if object.inlaySpec == "w2" %} selected {% endif %}>W2</option>
+        <option value="w3" {% if object.inlaySpec == "w3" %} selected {% endif %}>W3</option>
+        <option value="w4" {% if object.inlaySpec == "w4" %} selected {% endif %}>W4</option>
+        <option value="w5" {% if object.inlaySpec == "w5" %} selected {% endif %}>W5</option>
+        <option value="w6" {% if object.inlaySpec == "w6" %} selected {% endif %}>W6</option>
+    </select>
+</div>
+
+<div class="form-row">
+    <label for="inlayDeveloper">Inlay Developer</label>
+    <input type="text" class="form-control" name="inlayDeveloper" placeholder="Enter Company Name" value="{{ object.inlayDeveloper }}">
+    <small name="inlayDeveloperHelp" class="form-text text-muted">Company Name</small>
+</div>
+
+<div class="form-row">
+    <label for="modelName">Model Name</label>
+    <input text="text" class="form-control" name="modelName" placeholder="Enter Model Name" value="{{ object.modelName }}">
+    <small name="modelNameHelp" class="form-text text-muted">i.e. Maze MU7</small>
+</div>
+{% endblock content %}

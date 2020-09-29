@@ -1,0 +1,85 @@
+{% extends "walmart/base.html" %}
+{% block content %}
+    <h1>Vender Form</h1>
+
+    <form method="post" action="/form/new/">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="vendorName">Vendor Name in Retail Link</label>
+            <input type="text" class="form-control" name="vendorName" id="vendorName" placeholder="Enter Vendor Name">
+        </div>
+
+        <div class="form-group">
+            <label for="vendorNumber">Vendor Number in Retail Link</label>
+            <input type="text" class="form-control" name="vendorNumber" placeholder="Enter Vendor Number">
+        </div>
+
+        <div class="form-group">
+            <label for="senderName">Sender Name</label>
+            <input type="text" class="form-control" name="senderName" placeholder="Enter Sender Name">
+        </div>
+
+        <div class="form-group">
+            <label for="senderEmail">Sender Email</label>
+            <input type="email" class="form-control" name="senderEmail" placeholder="Enter Sender Email">
+        </div>
+
+        <div class="form-group">
+            <label for="senderCountry">Sender Country of Origin</label>
+            <input type="text" class="form-control" name="senderCountry" placeholder="Enter Sender Country of Origin">
+        </div>
+
+        <div class="form-group">
+            <label for="walmartBuyerName">Walmart Buyer Name</label>
+            <input type="text" class="form-control" name="walmartBuyerName" placeholder="Enter Walmart Buyer Name">
+        </div>
+
+        <div class="form-group">
+            <label for="upcEAN">UPC/EAN for Item Submitted</label>
+            <input type="text" class="form-control" name="upcEAN" placeholder="Enter UPC/EAN">
+        </div>
+
+        <div class="form-group">
+            <label for="itemType">Item Type</label>
+            <select class="form-control" name="itemType"  >
+                <option value="">Select Type</option>
+                <option value="apparel">Apparel</option>
+                <option value="accessories">Accessories</option>
+                <option value="sunglasses">Sunglasses</option>
+                <option value="footwear">Footwear</option>
+                <option value="jewelry">Jewelry</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="departmentNumber">Department Number</label>
+            <input type="text" class="form-control" name="departmentNumber" placeholder="Enter Department Number">
+        </div>
+
+        <div class="form-group">
+            <label for="inlaySpec">Auburn Spec for Inlay Used</label>
+            <select class="form-control" name="inlaySpec">
+                <option>Select Spec</option>
+                <option>W1</option>
+                <option>W2</option>
+                <option>W3</option>
+                <option>W4</option>
+                <option>W5</option>
+                <option>W6</option>
+            </select>
+        </div>
+
+        <div class="form-row">
+            <label for="inlayDeveloper">Inlay Developer</label>
+            <input type="text" class="form-control" name="inlayDeveloper" placeholder="Enter Company Name">
+            <small name="inlayDeveloperHelp" class="form-text text-muted">Company Name</small>
+        </div>
+
+        <div class="form-row">
+            <small name="modelNameHelp" class="form-text text-muted">i.e. Maze MU7</small>
+            <input text="text" class="form-control" name="modelName" placeholder="Enter Model Name">
+            <label for="modelName">Model Name</label>
+        </div>
+        <button type="submit" value="Submit">Submit</button>
+    </form>
+{% endblock content %}
