@@ -1,7 +1,7 @@
 from django.shortcuts import render, reverse
 from django.http import HttpResponseRedirect
 from django.views.generic import DetailView, CreateView
-from .models import Form_Entry
+from .models import Form_Entry, Entry_Form
 
 
 def home(request):
@@ -9,9 +9,7 @@ def home(request):
 
 def form(request):
     if request.method == 'POST':
-        print(request.POST.get('venderName'))
-        entry = Form_Entry(request.POST)
-
+        print(request.POST.get("venderName"))
         return HttpResponseRedirect(reverse('home'))
     else:
         return render(request, 'walmart/vender_form.html')
