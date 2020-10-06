@@ -52,16 +52,22 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="walmart\migrations\__pycache__\__init__.cpython-38.pyc" />
+    <Content Include="walmart\static\walmart\main.css" />
     <Content Include="walmart\templates\walmart\base.html" />
     <Content Include="walmart\templates\walmart\vender_form.html" />
     <Content Include="requirements.txt" />
     <Content Include="walmart\templates\walmart\home.html" />
     <Content Include="walmart\templates\walmart\form_entry.html" />
+    <Content Include="walmart\templates\walmart\form_detail.html" />
+    <Content Include="walmart\templates\walmart\form_search.html" />
+    <Content Include="walmart\templates\walmart\form_new.html" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="walmart\" />
     <Folder Include="walmart\migrations\" />
     <Folder Include="walmart\migrations\__pycache__\" />
+    <Folder Include="walmart\static\" />
+    <Folder Include="walmart\static\walmart\" />
     <Folder Include="walmart\templates\" />
     <Folder Include="walmart\templates\walmart\" />
     <Folder Include="Web_Portal\" />

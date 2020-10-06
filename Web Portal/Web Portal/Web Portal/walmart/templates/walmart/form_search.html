@@ -1,0 +1,15 @@
+﻿{% extends "walmart/base.html" %}
+{% block content %}
+<div class="container">
+    <h1 class="my-5">Form Lookup</h1>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="formId">Form ID</label>
+            <input type="text" class="form-control" name="formId" id="formId" placeholder="Enter Form ID">
+        </div>
+        <input type="submit" value="Search">
+    </form>
+</div>
+{% endblock content %}
