@@ -17,4 +17,4 @@ class Form_Entry(models.Model):
     modelName = models.CharField(max_length=100)
 
     def __str__(self):
-        return "{}, {}".format(self.venderName, self.upcEAN)
+        return "{}, {}".format(self.vendorName, self.upcEAN)

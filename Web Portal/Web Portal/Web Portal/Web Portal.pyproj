@@ -32,7 +32,6 @@
     <Compile Include="walmart\apps.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="walmart\migrations\0001_initial.py" />
     <Compile Include="walmart\migrations\__init__.py" />
     <Compile Include="walmart\admin.py">
       <SubType>Code</SubType>
@@ -51,8 +50,8 @@
     <Compile Include="Web_Portal\wsgi.py" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="walmart\migrations\__pycache__\__init__.cpython-38.pyc" />
     <Content Include="walmart\static\walmart\main.css" />
+    <Content Include="walmart\static\walmart\TextFile1.txt" />
     <Content Include="walmart\templates\walmart\base.html" />
     <Content Include="walmart\templates\walmart\vender_form.html" />
     <Content Include="requirements.txt" />
@@ -65,7 +64,6 @@
   <ItemGroup>
     <Folder Include="walmart\" />
     <Folder Include="walmart\migrations\" />
-    <Folder Include="walmart\migrations\__pycache__\" />
     <Folder Include="walmart\static\" />
     <Folder Include="walmart\static\walmart\" />
     <Folder Include="walmart\templates\" />
