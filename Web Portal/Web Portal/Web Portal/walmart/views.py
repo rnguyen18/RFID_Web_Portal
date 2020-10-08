@@ -2,6 +2,7 @@ from django.shortcuts import render, reverse
 from django.http import HttpResponseRedirect
 from django.views.generic import DetailView, CreateView
 from .models import Form_Entry
+from django.contrib import messages
 
 
 def home(request):
@@ -23,7 +24,8 @@ def form(request):
                                 inlayDeveloper = request.POST.get("inlayDeveloper"),
                                 modelName = request.POST.get("modelName"))
         form_entry.clean_fields()
-        form_entry.save()
+        # form_entry.save()
+        messages.success(request, "Form {} was successfully created!".format(form_entry.ID))
         return HttpResponseRedirect(reverse('home'))
     else:
         return render(request, 'walmart/form_new.html')

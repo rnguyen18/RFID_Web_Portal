@@ -1,8 +1,21 @@
 ﻿{% extends "walmart/base.html" %}
 {% block content %}
+
 <div class="jumbotron text-center">
   <h1 style="top:0">Home</h1>
   <p>Auburn RFID Lab Web Portal</p>
+</div>
+
+<div class="container">
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }}" role="alert">
+              <p>{{ message }}</p>
+          </div>
+        {% endfor %}
+      </ul>
+    {% endif %}
 </div>
 
 <div class="container">

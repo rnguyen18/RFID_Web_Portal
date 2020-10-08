@@ -51,15 +51,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="walmart\static\walmart\main.css" />
-    <Content Include="walmart\static\walmart\TextFile1.txt" />
     <Content Include="walmart\templates\walmart\base.html" />
-    <Content Include="walmart\templates\walmart\vender_form.html" />
     <Content Include="requirements.txt" />
     <Content Include="walmart\templates\walmart\home.html" />
-    <Content Include="walmart\templates\walmart\form_entry.html" />
     <Content Include="walmart\templates\walmart\form_detail.html" />
     <Content Include="walmart\templates\walmart\form_search.html" />
     <Content Include="walmart\templates\walmart\form_new.html" />
+    <Content Include="walmart\templates\walmart\form_success.html" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="walmart\" />
