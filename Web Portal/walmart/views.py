@@ -1,7 +1,7 @@
 from django.shortcuts import render, reverse
 from django.http import HttpResponseRedirect
-from django.views.generic import DetailView, CreateView
-from .models import Form_Entry
+from django.views.generic import DetailView, DeleteView
+from .models import Vendor_Form
 from django.contrib import messages
 
 
@@ -10,7 +10,7 @@ def home(request):
 
 def form(request):
     if request.method == 'POST':
-        form_entry = Form_Entry(ID = Form_Entry.objects.count(),
+        form_entry = Vendor_Form(ID = Vendor_Form.objects.count(),
                                 vendorName = request.POST.get("vendorName"),
                                 vendorNumber = request.POST.get("vendorNumber"),
                                 senderName = request.POST.get("senderName"),
@@ -24,7 +24,7 @@ def form(request):
                                 inlayDeveloper = request.POST.get("inlayDeveloper"),
                                 modelName = request.POST.get("modelName"))
         form_entry.clean_fields()
-        # form_entry.save()
+        form_entry.save()
         messages.success(request, "Form {} was successfully created!".format(form_entry.ID))
         return HttpResponseRedirect(reverse('home'))
     else:
@@ -43,5 +43,5 @@ def search_form(request):
         return render(request, 'walmart/form_search.html')
 
 class FormDetailView(DetailView):
-    model = Form_Entry
+    model = Vendor_Form
     template_name='walmart/form_detail.html'

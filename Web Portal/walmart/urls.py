@@ -6,5 +6,6 @@ urlpatterns = [
     path('', views.home, name="home"),
     path('form/search/', views.search_form, name="search"),
     path('form/search/<int:pk>/', FormDetailView.as_view(), name="detail"),
+    path('form/search/<int:pk>/delete/', FormDetailView.as_view(), name="delete"),
     path('form/new/', views.form, name="form")
 ]

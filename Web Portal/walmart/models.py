@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Form_Entry(models.Model):
+class Vendor_Form(models.Model):
     ID = models.IntegerField(primary_key=True)
     vendorName = models.CharField(max_length=100)
     vendorNumber = models.IntegerField()
@@ -15,6 +15,10 @@ class Form_Entry(models.Model):
     inlaySpec = models.CharField(max_length=100)
     inlayDeveloper = models.CharField(max_length=100)
     modelName = models.CharField(max_length=100)
+    privateBrand = models.CharField(max_length=100)
+    proprietaryBrand = models.CharField(max_length=100)
+    supplierBrand = models.CharField(max_length=100)
+    nationalBrand = models.CharField(max_length=100)
 
     def __str__(self):
         return "{}, {}".format(self.vendorName, self.upcEAN)

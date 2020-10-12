@@ -1,4 +1,4 @@
 from django.contrib import admin
-from .models import Form_Entry
+from .models import Vendor_Form
 
-admin.site.register(Form_Entry)
+admin.site.register(Vendor_Form)
