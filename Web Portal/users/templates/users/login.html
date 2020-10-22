@@ -1,0 +1,35 @@
+﻿{% extends "walmart/base.html" %}
+{% block content %}
+<div class="container">
+    <div class="container">
+        {% if messages %}
+          <ul class="messages">
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}" role="alert">
+                  <p>{{ message }}</p>
+              </div>
+            {% endfor %}
+          </ul>
+        {% endif %}
+    </div>
+
+    <div class="content-section">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom my-4">Login Page</legend>
+                {{ form.as_p }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline--info" type="submit">Log In</button>
+            </div>
+        </form>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                Need an Account?
+            </small>
+            <a href="{% url 'register' %}">Log In</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}
