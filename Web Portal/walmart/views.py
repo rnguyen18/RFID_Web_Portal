@@ -12,22 +12,23 @@ def home(request):
 def form(request):
     if request.method == 'POST':
         form_entry = Vendor_Form(ID = Vendor_Form.objects.count(),
-                                vendorName = request.POST.get("vendorName"),
-                                vendorNumber = request.POST.get("vendorNumber"),
-                                senderName = request.POST.get("senderName"),
-                                senderEmail = request.POST.get("senderEmail"),
-                                senderCountryOfOrigin = request.POST.get("senderCountryOfOrigin"),
-                                walmartBuyerName = request.POST.get("walmartBuyerName"),
-                                upcEAN = request.POST.get("upcEAN"),
-                                itemType = request.POST.get("itemType"),
-                                departmentNumber = request.POST.get("departmentNumber"),
-                                inlaySpec = request.POST.get("inlaySpec"),
-                                inlayDeveloper = request.POST.get("inlayDeveloper"),
-                                modelName = request.POST.get("modelName"),
-                                privateBrand = request.POST.get("privateBrand"),
-                                proprietaryBrand = request.POST.get("proprietaryBrand"),
-                                supplierBrand = request.POST.get("supplierBrand"),
-                                nationalBrand = request.POST.get("nationalBrand"))
+                                 author = request.user,
+                                 vendorName = request.POST.get("vendorName"),
+                                 vendorNumber = request.POST.get("vendorNumber"),
+                                 senderName = request.POST.get("senderName"),
+                                 senderEmail = request.POST.get("senderEmail"),
+                                 senderCountryOfOrigin = request.POST.get("senderCountryOfOrigin"),
+                                 walmartBuyerName = request.POST.get("walmartBuyerName"),
+                                 upcEAN = request.POST.get("upcEAN"),
+                                 itemType = request.POST.get("itemType"),
+                                 departmentNumber = request.POST.get("departmentNumber"),
+                                 inlaySpec = request.POST.get("inlaySpec"),
+                                 inlayDeveloper = request.POST.get("inlayDeveloper"),
+                                 modelName = request.POST.get("modelName"),
+                                 privateBrand = request.POST.get("privateBrand"),
+                                 proprietaryBrand = request.POST.get("proprietaryBrand"),
+                                 supplierBrand = request.POST.get("supplierBrand"),
+                                 nationalBrand = request.POST.get("nationalBrand"))
         form_entry.clean_fields()
         form_entry.save()
         messages.success(request, "Form {} was successfully created!".format(form_entry.ID))
@@ -47,12 +48,15 @@ def search_form(request):
     else:
         return render(request, 'walmart/form_search.html')
 
-class FormDetailView(DetailView, LoginRequiredMixin, UserPassesTestMixin):
+class FormDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
     model = Vendor_Form
     template_name='walmart/form_detail.html'
     
     def test_func(self):
-        return True
+        form = self.get_object()
+        if self.request.user ==  form.author or self.request.user.is_staff:
+            return True
+        return False
 
 class FormUpdateView(UpdateView, LoginRequiredMixin, UserPassesTestMixin):
     model = Vendor_Form

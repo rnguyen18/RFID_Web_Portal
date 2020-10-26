@@ -1,8 +1,10 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Vendor_Form(models.Model):
     ID = models.IntegerField(primary_key=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     vendorName = models.CharField(max_length=100)
     vendorNumber = models.IntegerField()
     senderName =  models.CharField(max_length=100)
