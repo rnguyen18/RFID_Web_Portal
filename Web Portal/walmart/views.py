@@ -31,7 +31,7 @@ def form(request):
         form_entry.clean_fields()
         form_entry.save()
         messages.success(request, "Form {} was successfully created!".format(form_entry.ID))
-        return HttpResponseRedirect(reverse('home'))
+        return HttpResponseRedirect(reverse('form-detail', args=[form_entry.ID]))
     else:
         return render(request, 'walmart/form_new.html')
 

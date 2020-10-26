@@ -1,0 +1,39 @@
+﻿{% extends "walmart/base.html" %}
+{% block content %}
+<div class="container">
+    <h1 class="my-5">Vendor Form</h1>
+
+    <form action="" method="post">
+        {% csrf_token %}
+
+        <h2 class="my-5">Brand Type and Brand Name</h2>
+
+        <div class="form-row">
+            <label for="id_private">Private</label>
+            <input text="text" class="form-control" name="privateBrand" id="id_privateBrand" placeholder="" value="{{ object.privateBrand }}">
+        </div>
+
+        <div class="form-row">
+            <label for="id_proprietaryBrand">Proprietary</label>
+            <input text="text" class="form-control" name="proprietaryBrand" id="id_proprietaryBrand" placeholder="" value="{{ object.proprietaryBrand }}">
+        </div>
+
+        <div class="form-row">
+            <label for="id_supplierBrand">Supplier</label>
+            <input text="text" class="form-control" name="supplierBrand" id="id_supplierBrand" placeholder="" value="{{ object.supplierBrand }}">
+        </div>
+
+        <div class="form-row">
+            <label for="id_nationalBrand">National</label>
+            <input text="text" class="form-control" name="nationalBrand" id="id_nationalBrand" placeholder="" value="{{ object.nationalBrand }}">
+        </div>
+
+        <div class="form-row my-3">
+            <label for="id_files">Upload Photos of Tag Placement</label>
+            <input type="file" name="photoFiles" id="id_files">
+        </div>
+
+        <input class="my-3" type="submit" value="Submit">
+    </form>
+</div>
+{% endblock content %}
