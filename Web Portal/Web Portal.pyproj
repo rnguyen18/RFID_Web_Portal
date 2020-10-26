@@ -29,6 +29,16 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="users\admin.py" />
+    <Compile Include="users\apps.py" />
+    <Compile Include="users\migrations\__init__.py" />
+    <Compile Include="users\models.py" />
+    <Compile Include="users\forms.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="users\tests.py" />
+    <Compile Include="users\views.py" />
+    <Compile Include="users\__init__.py" />
     <Compile Include="walmart\apps.py">
       <SubType>Code</SubType>
     </Compile>
@@ -50,6 +60,9 @@
     <Compile Include="Web_Portal\wsgi.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="users\templates\users\logout.html" />
+    <Content Include="users\templates\users\login.html" />
+    <Content Include="users\templates\users\register.html" />
     <Content Include="walmart\static\walmart\main.css" />
     <Content Include="walmart\templates\walmart\base.html" />
     <Content Include="requirements.txt" />
@@ -58,8 +71,13 @@
     <Content Include="walmart\templates\walmart\form_search.html" />
     <Content Include="walmart\templates\walmart\form_new.html" />
     <Content Include="walmart\templates\walmart\form_success.html" />
+    <Content Include="walmart\templates\walmart\form_delete.html" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="users\" />
+    <Folder Include="users\migrations\" />
+    <Folder Include="users\templates\" />
+    <Folder Include="users\templates\users\" />
     <Folder Include="walmart\" />
     <Folder Include="walmart\migrations\" />
     <Folder Include="walmart\static\" />

@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <link rel="stylesheet" type="text/css" href="{% static 'walmart/main.css' %}">
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'walmart/main.css' %}"> -->
 
     <title>Vendor Form</title>
 </head>
@@ -27,10 +27,10 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Form
                         </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/form/new/">New Form</a>
-                        <a class="dropdown-item" href="/form/search/">View Form</a>
-                    </div>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/form/new/">New Form</a>
+                            <a class="dropdown-item" href="/form/search/">View Form</a>
+                        </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/admin">Employee Login</a>
@@ -40,8 +40,13 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="nav-item"><a class="nav-link mr-2" href="#">Sign Up </a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"> Login</a></li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item navbar-text mr-2">Logged in as {{ user.username }},</li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+                        <li class="nav-item"><a class="nav-link mr-2" href="{% url 'register' %}">Sign Up</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}"> Login</a></li>
+                    {% endif %}
                 </ul>
           </div>
         </nav>

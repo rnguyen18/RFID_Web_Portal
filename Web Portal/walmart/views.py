@@ -1,6 +1,7 @@
-from django.shortcuts import render, reverse
+from django.shortcuts import render, reverse, redirect
 from django.http import HttpResponseRedirect
-from django.views.generic import DetailView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.views.generic import DetailView, DeleteView, UpdateView
 from .models import Vendor_Form
 from django.contrib import messages
 
@@ -22,7 +23,11 @@ def form(request):
                                 departmentNumber = request.POST.get("departmentNumber"),
                                 inlaySpec = request.POST.get("inlaySpec"),
                                 inlayDeveloper = request.POST.get("inlayDeveloper"),
-                                modelName = request.POST.get("modelName"))
+                                modelName = request.POST.get("modelName"),
+                                privateBrand = request.POST.get("privateBrand"),
+                                proprietaryBrand = request.POST.get("proprietaryBrand"),
+                                supplierBrand = request.POST.get("supplierBrand"),
+                                nationalBrand = request.POST.get("nationalBrand"))
         form_entry.clean_fields()
         form_entry.save()
         messages.success(request, "Form {} was successfully created!".format(form_entry.ID))
@@ -38,10 +43,29 @@ def edit_form(request):
 
 def search_form(request):
     if request.method == 'POST':
-        return HttpResponseRedirect(request.POST.get("formId"))
+        return HttpResponseRedirect(reverse('form-detail', args=(request.POST.get("formId"))))
     else:
         return render(request, 'walmart/form_search.html')
 
-class FormDetailView(DetailView):
+class FormDetailView(DetailView, LoginRequiredMixin, UserPassesTestMixin):
     model = Vendor_Form
     template_name='walmart/form_detail.html'
+    
+    def test_func(self):
+        return True
+
+class FormUpdateView(UpdateView, LoginRequiredMixin, UserPassesTestMixin):
+    model = Vendor_Form
+    template_name='walmart/form_update.html'
+
+    def test_func(self):
+        return True
+
+class FormDeleteView(DeleteView, LoginRequiredMixin, UserPassesTestMixin):
+    model = Vendor_Form
+    template_name='walmart/form_delete.html'
+    
+    def test_func(self):
+        return True
+
+
