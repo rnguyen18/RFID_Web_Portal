@@ -12,7 +12,6 @@ def home(request):
 def form(request):
     if request.method == 'POST':
         form_entry = Vendor_Form(ID = Vendor_Form.objects.count(),
-                                 author = request.user,
                                  vendorName = request.POST.get("vendorName"),
                                  vendorNumber = request.POST.get("vendorNumber"),
                                  senderName = request.POST.get("senderName"),
@@ -28,11 +27,13 @@ def form(request):
                                  privateBrand = request.POST.get("privateBrand"),
                                  proprietaryBrand = request.POST.get("proprietaryBrand"),
                                  supplierBrand = request.POST.get("supplierBrand"),
-                                 nationalBrand = request.POST.get("nationalBrand"))
+                                 nationalBrand = request.POST.get("nationalBrand"),
+                                 images = request.FILES.get("photoFiles"))
+
         form_entry.clean_fields()
         form_entry.save()
         messages.success(request, "Form {} was successfully created!".format(form_entry.ID))
-        return HttpResponseRedirect(reverse('form-detail', args=[form_entry.ID]))
+        return render(request, 'walmart/home.html')#HttpResponseRedirect(reverse('form-detail', args=[form_entry.ID]))
     else:
         return render(request, 'walmart/form_new.html')
 
@@ -54,7 +55,7 @@ class FormDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
     
     def test_func(self):
         form = self.get_object()
-        if self.request.user ==  form.author or self.request.user.is_staff:
+        if self.request.user.is_staff:
             return True
         return False
 
@@ -71,5 +72,4 @@ class FormDeleteView(DeleteView, LoginRequiredMixin, UserPassesTestMixin):
     
     def test_func(self):
         return True
-
 

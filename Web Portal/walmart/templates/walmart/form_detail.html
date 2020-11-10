@@ -83,9 +83,25 @@
         <input class="col-6 pl-4" text="text" name="nationalBrand" placeholder="No National Brand" value="{{ object.nationalBrand }}" disabled>
     </div>
 
+    <div class="row mt-2">
+        <label class="col-6 pl-4" for="image">Image</label>
+        <img class="col-6 pl-4" src="{{ object.images.url }}" alt="Product Image" name="image"/>
+    </div>
+
+    <div class="row mt-2">
+        <label class="col-6 pl-4" for="qrcode">QR Code</label>
+        <div class="col-6 pl-4">
+            <img class="rounded mx-auto d-block" style="width: 200px;" src="{{ object.model_qrcode.url }}" alt="qrcode" name="qrcode"/>
+        </div>
+    </div>
+
+    <img class="row mt-2 rounded mx-auto d-block" src="{{ object.model_barcode.url }}" alt="Barcode code" name="barcode"/>
+
+
     <div class="d-flex flex-row-reverse my-3">
         <a type="button" class="btn btn-danger" href="delete/">Delete</a>
         <a type="button" class="btn btn-warning mr-3" href="update/">Edit</a>
     </div>
+
 </div>
 {% endblock content %}
