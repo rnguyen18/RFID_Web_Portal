@@ -1,9 +1,13 @@
 from django.shortcuts import render, reverse, redirect
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import DetailView, DeleteView, UpdateView
+from django.views.generic import DetailView, DeleteView, UpdateView, View
 from .models import Vendor_Form
 from django.contrib import messages
+from django.conf import settings 
+from django.core.mail import send_mail 
+from django.core.mail import EmailMessage
+from .utils import render_to_pdf, create_pdf
 
 
 def home(request):
@@ -29,11 +33,28 @@ def form(request):
                                  supplierBrand = request.POST.get("supplierBrand"),
                                  nationalBrand = request.POST.get("nationalBrand"),
                                  images = request.FILES.get("photoFiles"))
-
         form_entry.clean_fields()
         form_entry.save()
         messages.success(request, "Form {} was successfully created!".format(form_entry.ID))
-        return render(request, 'walmart/home.html')#HttpResponseRedirect(reverse('form-detail', args=[form_entry.ID]))
+        
+        
+        subject = 'Vender Form {}'.format(form_entry.ID)
+        message = 'Hello {},\n\nWe have received your vender form and it is attached below as well!\n\nThanks,\nAuburn RFID Lab'.format(form_entry.senderName)
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = [form_entry.senderEmail]
+        #send_mail( subject, message, email_from, recipient_list )
+        email = EmailMessage(
+            subject,
+            message,
+            email_from,
+            recipient_list,
+            [''],
+            reply_to=[''],
+            headers={'Message-ID': 'foo'},
+        )
+        email.attach_file('media/barcodes/{}.png'.format(form_entry.ID))
+        email.send()
+        return HttpResponseRedirect(reverse('form-detail', args=[form_entry.ID]))
     else:
         return render(request, 'walmart/form_new.html')
 
@@ -59,17 +80,15 @@ class FormDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
             return True
         return False
 
-class FormUpdateView(UpdateView, LoginRequiredMixin, UserPassesTestMixin):
+class FormPDFView(DetailView):
     model = Vendor_Form
-    template_name='walmart/form_update.html'
 
-    def test_func(self):
-        return True
+    def get(self, request, *args, **kwargs):
+        obj = self.get_object()
+        data = {
+             'object': self.get_object(),
+             'model_barcode': obj.model_barcode.url
+        }
 
-class FormDeleteView(DeleteView, LoginRequiredMixin, UserPassesTestMixin):
-    model = Vendor_Form
-    template_name='walmart/form_delete.html'
-    
-    def test_func(self):
-        return True
-
+        pdf = render_to_pdf('walmart/vendorformtemplate.html', data)
+        return HttpResponse(pdf, content_type='application/pdf')

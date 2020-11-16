@@ -97,11 +97,6 @@
 
     <img class="row mt-2 rounded mx-auto d-block" src="{{ object.model_barcode.url }}" alt="Barcode code" name="barcode"/>
 
-
-    <div class="d-flex flex-row-reverse my-3">
-        <a type="button" class="btn btn-danger" href="delete/">Delete</a>
-        <a type="button" class="btn btn-warning mr-3" href="update/">Edit</a>
-    </div>
-
+    <a class="my-2 mx-auto d-block btn" href="pdf">Generate PDF</a>
 </div>
 {% endblock content %}

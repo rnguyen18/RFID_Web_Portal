@@ -6,6 +6,7 @@ from io import BytesIO
 from django.core.files import File
 from PIL import Image, ImageDraw
 import qrcode
+from .utils import create_pdf
 
 class Vendor_Form(models.Model):
     ID = models.IntegerField(primary_key=True)
@@ -28,6 +29,7 @@ class Vendor_Form(models.Model):
     images = models.ImageField(upload_to="images", blank=True)
     model_barcode = models.ImageField(upload_to="barcodes", blank=True)
     model_qrcode = models.ImageField(upload_to='qr_codes', blank=True)
+    pdf = models.FileField(upload_to='pdfs/', null=True, blank=True)
 
     def save(self, *args, **kwargs):
         EAN = barcode.get_barcode_class('ean13')
@@ -52,6 +54,11 @@ class Vendor_Form(models.Model):
         canvas.save(buffer2, 'PNG')
         self.model_qrcode.save(fname, File(buffer2), save=False)
         canvas.close()
+
+        pdf = create_pdf({'object': self})
+        filename = "Vendor Form {}.pdf".format(self.ID)
+        self.pdf.save(filename, File(BytesIO(pdf)), save=False)
+
         return super().save(*args, **kwargs)
 
     def __str__(self):
