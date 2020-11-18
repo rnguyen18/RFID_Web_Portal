@@ -52,7 +52,7 @@ def form(request):
             reply_to=[''],
             headers={'Message-ID': 'foo'},
         )
-        email.attach_file('media/barcodes/{}.png'.format(form_entry.ID))
+        email.attach_file('media/pdfs/Vendor_Form_{}.pdf'.format(form_entry.ID))
         email.send()
         return HttpResponseRedirect(reverse('form-detail', args=[form_entry.ID]))
     else:
