@@ -37,12 +37,11 @@ def form(request):
         form_entry.save()
         messages.success(request, "Form {} was successfully created!".format(form_entry.ID))
         
-        
         subject = 'Vender Form {}'.format(form_entry.ID)
         message = 'Hello {},\n\nWe have received your vender form and it is attached below as well!\n\nThanks,\nAuburn RFID Lab'.format(form_entry.senderName)
         email_from = settings.EMAIL_HOST_USER
         recipient_list = [form_entry.senderEmail]
-        #send_mail( subject, message, email_from, recipient_list )
+
         email = EmailMessage(
             subject,
             message,
@@ -54,7 +53,11 @@ def form(request):
         )
         email.attach_file('media/pdfs/Vendor_Form_{}.pdf'.format(form_entry.ID))
         email.send()
-        return HttpResponseRedirect(reverse('form-detail', args=[form_entry.ID]))
+
+        if request.user.is_active:
+            return HttpResponseRedirect(reverse('form-detail', args=[form_entry.ID]))
+        else:
+            return HttpResponseRedirect(reverse('home'))
     else:
         return render(request, 'walmart/form_new.html')
 

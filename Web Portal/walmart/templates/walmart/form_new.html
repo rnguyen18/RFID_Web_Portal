@@ -103,9 +103,9 @@
             <input text="text" class="form-control" name="nationalBrand" id="id_nationalBrand" placeholder="" value="{{ object.nationalBrand }}">
         </div>
 
-        <div class="form-row my-3">
-            <label for="id_files">Upload Photos of Tag Placement</label>
-            <input type="file" name="photoFiles" id="id_files">
+        <div class="form-row my-3 custom-file">
+            <input class="custom-file-input" type="file" name="photoFiles" id="id_files">
+            <label class="custom-file-label" for="id_files">Upload Photos of Tag Placement</label>
         </div>
 
         <input class="my-3" type="submit" value="Submit">
