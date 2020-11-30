@@ -20,7 +20,7 @@ class Vendor_Form(models.Model):
     senderEmail = models.EmailField()
     senderCountryOfOrigin = models.CharField(max_length=100)
     walmartBuyerName = models.CharField(max_length=100)
-    upcEAN = models.IntegerField()
+    upcEAN = models.PositiveIntegerField(max_length=13)
     itemType = models.CharField(max_length=100)
     departmentNumber = models.IntegerField()
     inlaySpec = models.CharField(max_length=100)
