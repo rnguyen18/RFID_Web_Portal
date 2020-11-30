@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Vendor Form {{ object.ID }}</title>
+</head>
+<body>
+    <h1 class="my-5">Vendor Form {{ object.ID }}</h1>
+
+    <div>
+        <label>Vendor Name in Retail Link: </label>
+        <label>{{ object.vendorName }}</label>
+    </div>
+
+    <div>
+        <label>Vendor Number in Retail Link: </label>
+        <label>{{ object.vendorNumber }}</label>
+    </div>
+
+    <div>
+        <label>Sender Name: </label>
+        <label>{{ object.senderName }}</label>
+    </div>
+
+    <div>
+        <label>Sender Email: </label>
+        <label>{{ object.senderEmail }}</label>
+    </div>
+
+    <div>
+        <label>Sender Country of Origin: </label>
+        <label>{{ object.senderCountryOfOrigin }}</label>
+    </div>
+
+    <div>
+        <label>Walmart Buyer Name: </label>
+        <label>{{ object.walmartBuyerName }}</label>
+    </div>
+
+    <div>
+        <label>UPC/EAN for Item Submitted: </label>
+        <label>{{ object.upcEAN }}</label>
+    </div>
+
+    <div>
+        <label>Item Type: </label>
+        <label>{{ object.itemType }}</label>
+    </div>
+
+    <div>
+        <label>Department Number: </label>
+        <label>{{ object.departmentNumber }}</label>
+    </div>
+
+    <div>
+        <label>Auburn Spec for Inlay Used: </label>
+        <label>{{ object.inlaySpec }}</label>
+    </div>
+
+    <div>
+        <label>Inlay Developer: </label>
+        <label>{{ object.inlayDeveloper }}</label>
+    </div>
+
+    <div>
+        <label>Model Name: </label>
+        <label>{{ object.modelName }}</label>
+    </div>
+
+    <div>
+        <label>Private Brand: </label>
+        <label>{{ object.privateBrand }}</label>
+    </div>
+
+    <div>
+        <label>Proprietary Brand: </label>
+        <label>{{ object.proprietaryBrand }}</label>
+    </div>
+
+    <div>
+        <label>Supplier Brand: </label>
+        <label>{{ object.supplierBrand }}</label>
+    </div>
+
+    <div>
+        <label>National Brand: </label>
+        <label>{{ object.nationalBrand }}</label>
+    </div>
+
+    <div>
+        <img src="{{ object.images.url }}" alt="Product Image" name="image" />
+    </div>
+
+    <div>
+        <img style="width: 200px;" src="{{ object.model_qrcode.url }}" alt="qrcode" name="qrcode" />
+    </div>
+
+    <div>
+        <img style="margin-left: auto; margin-right: auto; width: 50%;" src="{{ object.model_barcode.url }}" alt="Barcode code" name="barcode" />
+    </div>
+</body>
+</html>
