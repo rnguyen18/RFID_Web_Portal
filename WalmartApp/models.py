@@ -15,7 +15,7 @@ from .utils import create_pdf
 class Vendor_Form(models.Model):
     ID = models.IntegerField(primary_key=True)
     vendorName = models.CharField(max_length=100)
-    vendorNumber = models.IntegerField()
+    vendorNumber = models.PositiveIntegerField(max_length=6)
     senderName = models.CharField(max_length=100)
     senderEmail = models.EmailField()
     senderCountryOfOrigin = models.CharField(max_length=100)
