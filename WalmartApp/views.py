@@ -66,7 +66,7 @@ def form(request):
 
 def edit_form(request):
     context = {
-        'entry': Form_Entry.objects.first()
+        'entry': Vendor_Form.objects.first()
     }
     return render(request, 'walmart/vender_form.html', context)
 
