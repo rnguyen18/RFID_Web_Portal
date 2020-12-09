@@ -38,8 +38,8 @@ def form(request):
         form_entry.save()
         messages.success(request, "Form {} was successfully created!".format(form_entry.ID))
 
-        subject = 'Vender Form {}'.format(form_entry.ID)
-        message = 'Hello {},\n\nWe have received your vender form and it is attached below as well!\n\nThanks,\nAuburn RFID Lab'.format(
+        subject = 'Vendor Form {}'.format(form_entry.ID)
+        message = 'Hello {},\n\nWe have received your vendor form and it is attached below as well!\n\nThanks,\nAuburn RFID Lab'.format(
             form_entry.senderName)
         email_from = settings.EMAIL_HOST_USER
         recipient_list = [form_entry.senderEmail]
@@ -68,7 +68,7 @@ def edit_form(request):
     context = {
         'entry': Vendor_Form.objects.first()
     }
-    return render(request, 'walmart/vender_form.html', context)
+    return render(request, 'walmart/vendor_form.html', context)
 
 
 def search_form(request):
