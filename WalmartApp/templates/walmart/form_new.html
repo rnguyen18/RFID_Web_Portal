@@ -53,7 +53,20 @@
 
         <div class="form-group">
             <label for="id_departmentNumber">Department Number</label>
-            <input type="text" class="form-control" name="departmentNumber" id="id_departmentNumber" placeholder="Enter Department Number" value="{{ object.departmentNumber }}">
+            <select class="form-control" name="departmentNumber" id="id_departmentNumber">
+                <option value="" {% if object.departmentNumber == "" %} selected {% endif %}>Select Department Number</option>
+                <option value="d23" {% if object.departmentNumber == "d23" %} selected {% endif %}>D23</option>
+                <option value="d24" {% if object.departmentNumber == "d24" %} selected {% endif %}>D24</option>
+                <option value="d25" {% if object.departmentNumber == "d25" %} selected {% endif %}>D25</option>
+                <option value="d26" {% if object.departmentNumber == "d26" %} selected {% endif %}>D26</option>
+                <option value="d29" {% if object.departmentNumber == "d29" %} selected {% endif %}>D29</option>
+                <option value="d30" {% if object.departmentNumber == "d30" %} selected {% endif %}>D30</option>
+                <option value="d31" {% if object.departmentNumber == "d31" %} selected {% endif %}>D31</option>
+                <option value="d32" {% if object.departmentNumber == "d32" %} selected {% endif %}>D32</option>
+                <option value="d33" {% if object.departmentNumber == "d33" %} selected {% endif %}>D33</option>
+                <option value="d34" {% if object.departmentNumber == "d34" %} selected {% endif %}>D34</option>
+                <option value="d41" {% if object.departmentNumber == "d41" %} selected {% endif %}>D41</option>
+            </select>
         </div>
 
         <div class="form-group">
