@@ -22,7 +22,7 @@ class Vendor_Form(models.Model):
     walmartBuyerName = models.CharField(max_length=100)
     upcEAN = models.PositiveIntegerField()
     itemType = models.CharField(max_length=100)
-    departmentNumber = models.IntegerField()
+    departmentNumber = models.CharField(max_length=3)
     inlaySpec = models.CharField(max_length=100)
     inlayDeveloper = models.CharField(max_length=100)
     modelName = models.CharField(max_length=100)
