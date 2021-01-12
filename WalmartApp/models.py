@@ -8,12 +8,13 @@ from django.core.files import File
 from PIL import Image, ImageDraw
 import qrcode
 from .utils import create_pdf
+from django.core.validators import RegexValidator
 
 
 class Vendor_Form(models.Model):
     ID = models.IntegerField(primary_key=True)
     vendorName = models.CharField(max_length=100)
-    vendorNumber = models.PositiveIntegerField()
+    vendorNumber = models.CharField(max_length=6, validators=[RegexValidator(r'^\d{6}$')])
     senderName = models.CharField(max_length=100)
     senderEmail = models.EmailField()
     senderCountryOfOrigin = models.CharField(max_length=100)
