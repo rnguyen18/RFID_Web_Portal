@@ -82,10 +82,32 @@
             </select>
         </div>
 
-        <div class="form-row">
+        <div class="form-group">
             <label for="id_inlayDeveloper">Inlay Developer</label>
-            <input type="text" class="form-control" name="inlayDeveloper" id="id_inlayDeveloper" placeholder="Enter Company Name" value="{{ object.inlayDeveloper }}">
-            <small name="inlayDeveloperHelp" class="form-text text-muted">Company Name</small>
+            <select class="form-control" name="inlayDeveloper" id="id_inlayDeveloper">
+                <option value="" {% if object.inlayDeveloper == "" %} selected {% endif %}>Select Inlay Developer</option>
+                <option value="Alien" {% if object.inlayDeveloper == "Alien" %} selected {% endif %}>Alien</option>
+                <option value="Avery Dennison" {% if object.inlayDeveloper == "Avery Dennison" %} selected {% endif %}>Avery Dennison</option>
+                <option value="Boingtech" {% if object.inlayDeveloper == "Boingtech" %} selected {% endif %}>Boingtech</option>
+                <option value="C&C" {% if object.inlayDeveloper == "C&C" %} selected {% endif %}>C&C</option>
+                <option value="Checkpoint" {% if object.inlayDeveloper == "Checkpoint" %} selected {% endif %}>Checkpoint</option>
+                <option value="Data2" {% if object.inlayDeveloper == "Data2" %} selected {% endif %}>Data2</option>
+                <option value="Hangzhou Century Link Technology Co., LTD" {% if object.inlayDeveloper == "Hangzhou Century Link Technology Co., LTD" %} selected {% endif %}>Hangzhou Century Link Technology Co., LTD</option>
+                <option value="Invengo" {% if object.inlayDeveloper == "Invengo" %} selected {% endif %}>Invengo</option>
+                <option value="Laxcen" {% if object.inlayDeveloper == "Laxcen" %} selected {% endif %}>Laxcen</option>
+                <option value="LSIS" {% if object.inlayDeveloper == "LSIS" %} selected {% endif %}>LSIS</option>
+                <option value="Lusem" {% if object.inlayDeveloper == "Lusem" %} selected {% endif %}>Lusem</option>
+                <option value="Sirit" {% if object.inlayDeveloper == "Sirit" %} selected {% endif %}>Sirit</option>
+                <option value="Smartrac" {% if object.inlayDeveloper == "Smartrac" %} selected {% endif %}>Smartrac</option>
+                <option value="SML" {% if object.inlayDeveloper == "SML" %} selected {% endif %}>SML</option>
+                <option value="SS RFID CO., LTD." {% if object.inlayDeveloper == "SS RFID CO., LTD." %} selected {% endif %}>SS RFID CO., LTD.</option>
+                <option value="Tageos" {% if object.inlayDeveloper == "Tageos" %} selected {% endif %}>Tageos</option>
+                <option value="Trace - Tech ID Solutions" {% if object.inlayDeveloper == "Trace - Tech ID Solutions" %} selected {% endif %}>Trace - Tech ID Solutions</option>
+                <option value="Xindeco IOT" {% if object.inlayDeveloper == "Xindeco IOT" %} selected {% endif %}>Xindeco IOT</option>
+                <option value="YFY Group" {% if object.inlayDeveloper == "YFY Group" %} selected {% endif %}>YFY Group</option>
+                <option value="Zebra" {% if object.inlayDeveloper == "Zebra" %} selected {% endif %}>Zebra</option>
+                <option value="Other" {% if object.inlayDeveloper == "Other" %} selected {% endif %}>Other</option>
+            </select>
         </div>
 
         <div class="form-row">
