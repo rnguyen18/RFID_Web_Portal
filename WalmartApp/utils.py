@@ -15,7 +15,7 @@ def fetch_resources(uri, rel):
     return path
 
 def create_pdf(context={}):
-    template_path= 'WalmartApp/vendorformtemplate.html'
+    template_path= 'walmart/vendorformtemplate.html'
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="VendorForm.pdf"'
     template = get_template(template_path)

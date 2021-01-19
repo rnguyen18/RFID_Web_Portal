@@ -3,8 +3,6 @@ from django.db import models
 # Create your models here.
 from django.db import models
 from django.contrib.auth.models import User
-import barcode
-from barcode.writer import ImageWriter
 from io import BytesIO
 from django.core.files import File
 from PIL import Image, ImageDraw
@@ -31,24 +29,10 @@ class Vendor_Form(models.Model):
     supplierBrand = models.CharField(max_length=100)
     nationalBrand = models.CharField(max_length=100)
     images = models.ImageField(upload_to="images", blank=True)
-    model_barcode = models.ImageField(upload_to="barcodes", blank=True)
     model_qrcode = models.ImageField(upload_to='qr_codes', blank=True)
     pdf = models.FileField(upload_to='pdfs/', null=True, blank=True)
 
     def save(self, *args, **kwargs):
-        EAN = barcode.get_barcode_class('ean13')
-        ean = EAN(str(self.getEAN(self.ID)), writer=ImageWriter())
-        buffer = BytesIO()
-        ean.write(buffer)
-        self.model_barcode.save(f'{self.ID}.png', File(buffer), save=False)
-
-        image = Image.open(self.model_barcode)
-        (width, height) = image.size
-        heightRatio = int(height / 100)
-        newWidth = int(width * heightRatio)
-        size = (newWidth, 100)
-        image = image.resize(size, Image.ANTIALIAS)
-
         qrcode_img = qrcode.make(self.getQRCodeData())
         canvas = Image.new('RGB', (500, 500), 'white')
         draw = ImageDraw.Draw(canvas)
