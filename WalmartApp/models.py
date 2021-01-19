@@ -62,5 +62,4 @@ class Vendor_Form(models.Model):
             self.senderName) + "\n" + str(self.senderEmail) + "\n" + str(self.senderCountryOfOrigin) + "\n" + str(
             self.walmartBuyerName) + "\n" + str(self.upcEAN) + "\n" + str(self.itemType) + "\n" + str(
             self.departmentNumber) + "\n" + str(self.inlaySpec) + "\n" + str(self.inlayDeveloper) + "\n" + str(
-            self.modelName) + "\n" + str(self.privateBrand) + "\n" + str(self.proprietaryBrand) + "\n" + str(
-            self.supplierBrand) + "\n" + str(self.nationalBrand)
+            self.modelName) + "\n" + str(self.brandName) + "\n" + str(self.brandType) + "\n"
