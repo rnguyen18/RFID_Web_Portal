@@ -25,10 +25,8 @@ class Vendor_Form(models.Model):
     inlaySpec = models.CharField(max_length=100)
     inlayDeveloper = models.CharField(max_length=100)
     modelName = models.CharField(max_length=100)
-    privateBrand = models.CharField(max_length=100)
-    proprietaryBrand = models.CharField(max_length=100)
-    supplierBrand = models.CharField(max_length=100)
-    nationalBrand = models.CharField(max_length=100)
+    brandName = models.CharField(max_length=100)
+    brandType = models.CharField(max_length=100)
     images = models.ImageField(upload_to="images", blank=True)
     model_qrcode = models.ImageField(upload_to='qr_codes', blank=True)
     pdf = models.FileField(upload_to='pdfs/', null=True, blank=True)
@@ -64,5 +62,4 @@ class Vendor_Form(models.Model):
             self.senderName) + "\n" + str(self.senderEmail) + "\n" + str(self.senderCountryOfOrigin) + "\n" + str(
             self.walmartBuyerName) + "\n" + str(self.upcEAN) + "\n" + str(self.itemType) + "\n" + str(
             self.departmentNumber) + "\n" + str(self.inlaySpec) + "\n" + str(self.inlayDeveloper) + "\n" + str(
-            self.modelName) + "\n" + str(self.privateBrand) + "\n" + str(self.proprietaryBrand) + "\n" + str(
-            self.supplierBrand) + "\n" + str(self.nationalBrand)
+            self.modelName) + "\n" + str(self.brandName) + "\n" + str(self.brandType) + "\n"

@@ -116,27 +116,25 @@
             <small name="modelNameHelp" class="form-text text-muted">i.e. Maze MU7</small>
         </div>
 
-        <h2 class="my-5">Brand Type and Brand Name</h2>
+        <h2 class="my-5">Brand Information</h2>
 
         <div class="form-row">
-            <label for="id_private">Private</label>
-            <input text="text" class="form-control" name="privateBrand" id="id_privateBrand" placeholder="" value="{{ object.privateBrand }}">
+            <label for="id_brandName">Name</label>
+            <input text="text" class="form-control" name="brandName" id="id_brandName" placeholder="" value="{{ object.brandName }}">
         </div>
 
-        <div class="form-row">
-            <label for="id_proprietaryBrand">Proprietary</label>
-            <input text="text" class="form-control" name="proprietaryBrand" id="id_proprietaryBrand" placeholder="" value="{{ object.proprietaryBrand }}">
+        <div class="form-group">
+            <label for="id_brandType">Type</label>
+            <select class="form-control" name="brandType" id="id_brandType">
+                <option value="" {% if object.brandType == "" %} selected {% endif %}>Select Brand Type</option>
+                <option value="Private" {% if object.brandType == "Private" %} selected {% endif %}>Private</option>
+                <option value="Proprietary" {% if object.brandType == "Proprietary" %} selected {% endif %}>Proprietary</option>
+                <option value="Supplier" {% if object.brandType == "Supplier" %} selected {% endif %}>Supplier</option>
+                <option value="National" {% if object.brandType == "National" %} selected {% endif %}>National</option>
+            </select>
         </div>
 
-        <div class="form-row">
-            <label for="id_supplierBrand">Supplier</label>
-            <input text="text" class="form-control" name="supplierBrand" id="id_supplierBrand" placeholder="" value="{{ object.supplierBrand }}">
-        </div>
-
-        <div class="form-row">
-            <label for="id_nationalBrand">National</label>
-            <input text="text" class="form-control" name="nationalBrand" id="id_nationalBrand" placeholder="" value="{{ object.nationalBrand }}">
-        </div>
+        <h2 class="my-5">Image Upload</h2>
 
         <div class="form-row my-3 custom-file">
             <input class="custom-file-input" type="file" name="photoFiles" id="id_files">

@@ -29,10 +29,8 @@ def form(request):
                                  inlaySpec=request.POST.get("inlaySpec"),
                                  inlayDeveloper=request.POST.get("inlayDeveloper"),
                                  modelName=request.POST.get("modelName"),
-                                 privateBrand=request.POST.get("privateBrand"),
-                                 proprietaryBrand=request.POST.get("proprietaryBrand"),
-                                 supplierBrand=request.POST.get("supplierBrand"),
-                                 nationalBrand=request.POST.get("nationalBrand"),
+                                 brandName=request.POST.get("brandName"),
+                                 brandType=request.POST.get("brandType"),
                                  images=request.FILES.get("photoFiles"))
         form_entry.clean_fields()
         form_entry.save()
