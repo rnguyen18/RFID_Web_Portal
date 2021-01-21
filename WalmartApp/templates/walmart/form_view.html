@@ -1,17 +1,18 @@
 ﻿{% extends "walmart/base.html" %}
 {% block content %}
 <div class="container">
-    <h1 class="my-5">Your Forms</h1>
-    <a class="btn btn-secondary" href="/">View Your Forms</a>
-
-    <h1 class="my-5 ">Form Lookup</h1>
+    <h1 class="my-5">View Forms</h1>
     <form action="" method="post">
         {% csrf_token %}
         <div class="form-group">
-            <label for="formId">Form ID</label>
             <input type="text" class="form-control" name="formId" id="formId" placeholder="Enter Form ID">
         </div>
         <input class="btn" type="submit" value="Search">
     </form>
+
+    <h4 class="my-5">Your Forms</h4>
+    {% for form in forms %}
+        <a class="nav-link" href="{{ form.ID }}">Form {{ form.ID }}</a>
+    {% endfor %}
 </div>
 {% endblock content %}

@@ -69,11 +69,14 @@ def edit_form(request):
     return render(request, 'walmart/vender_form.html', context)
 
 
-def search_form(request):
+def view_form(request):
+    context = {
+        'forms' : Vendor_Form.objects.all()
+    }
     if request.method == 'POST':
         return HttpResponseRedirect(reverse('form-detail', args=(request.POST.get("formId"))))
     else:
-        return render(request, 'walmart/form_search.html')
+        return render(request, 'walmart/form_view.html',context)
 
 
 class FormDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
