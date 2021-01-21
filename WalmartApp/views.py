@@ -93,8 +93,7 @@ class FormPDFView(DetailView):
     def get(self, request, *args, **kwargs):
         obj = self.get_object()
         data = {
-            'object': self.get_object(),
-            'model_barcode': obj.model_barcode.url
+            'object': self.get_object()
         }
 
         pdf = render_to_pdf('walmart/vendorformtemplate.html', data)
