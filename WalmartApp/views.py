@@ -8,6 +8,7 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.core.mail import EmailMessage
 from .utils import render_to_pdf, create_pdf
+import re
 
 
 def home(request):
@@ -16,6 +17,71 @@ def home(request):
 
 def form(request):
     if request.method == 'POST':
+
+        context = {
+            "object": {
+                "vendorName": request.POST.get("vendorName"),
+                "vendorNumber" : request.POST.get("vendorNumber"),
+                "senderName" : request.POST.get("senderName"),
+                "senderEmail" : request.POST.get("senderEmail"),
+                "senderCountryOfOrigin" : request.POST.get("senderCountryOfOrigin"),
+                "walmartBuyerName" : request.POST.get("walmartBuyerName"),
+                "upcEAN" : request.POST.get("upcEAN"),
+                "itemType" : request.POST.get("itemType"),
+                "departmentNumber" : request.POST.get("departmentNumber"),
+                "inlaySpec" : request.POST.get("inlaySpec"),
+                "inlayDeveloper" : request.POST.get("inlayDeveloper"),
+                "modelName" : request.POST.get("modelName"),
+                "brandName" : request.POST.get("brandName"),
+                "brandType" : request.POST.get("brandType"),
+                "images" : request.FILES.get("photoFiles")
+            }
+        }
+        error = False
+
+        vNum = context["object"]["vendorName"]
+        if not vNum.isnumeric() or len(vNum) != 6:
+            messages.error(request, "Invalid Vendor Number")
+            error = True
+
+        email = request.POST.get("senderEmail")
+        if not re.search('^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$', email):
+            messages.error(request, "Invalid Email")
+            error = True
+
+        upceanNum = request.POST.get("upcEAN")
+        if not upceanNum.isnumeric():
+            messages.error(request, "Invalid UPC/EAN Number")
+            error = True
+
+        itemType = request.POST.get("itemType")
+        if itemType == "":
+            messages.error(request, "Select an Item Type")
+            error = True
+
+        departmentNumber = request.POST.get("departmentNumber")
+        if departmentNumber == "":
+            messages.error(request, "Select a Department Number")
+            error = True
+
+        inlaySpec = request.POST.get("inlaySpec")
+        if inlaySpec == "":
+            messages.error(request, "Select an Inlay Spec")
+            error = True
+
+        inlayDev = request.POST.get("inlayDeveloper")
+        if inlayDev == "":
+            messages.error(request, "Select an Inlay Developer")
+            error = True
+
+        brandType = request.POST.get("brandType")
+        if brandType == "":
+            messages.error(request, "Select a Brand Type")
+            error = True
+
+        if error:
+            return render(request, 'walmart/form_new.html', context)
+
         form_entry = Vendor_Form(ID=Vendor_Form.objects.count(),
                                  vendorName=request.POST.get("vendorName"),
                                  vendorNumber=request.POST.get("vendorNumber"),
@@ -32,6 +98,7 @@ def form(request):
                                  brandName=request.POST.get("brandName"),
                                  brandType=request.POST.get("brandType"),
                                  images=request.FILES.get("photoFiles"))
+
         form_entry.clean_fields()
         form_entry.save()
         messages.success(request, "Form {} was successfully created!".format(form_entry.ID))
@@ -58,8 +125,8 @@ def form(request):
             return HttpResponseRedirect(reverse('form-detail', args=[form_entry.ID]))
         else:
             return HttpResponseRedirect(reverse('home'))
-    else:
-        return render(request, 'walmart/form_new.html')
+
+    return render(request, 'walmart/form_new.html')
 
 
 def edit_form(request):
