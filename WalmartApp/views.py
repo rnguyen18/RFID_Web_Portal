@@ -20,7 +20,7 @@ def form(request):
         error = False
 
         vNum = request.POST.get("vendorNumber")
-        if not vNum.isnumeric() or len(vNum) != 6:
+        if not (vNum.isnumeric() and len(vNum) == 6):
             messages.error(request, "Invalid Vendor Number")
             error = True
 
@@ -59,8 +59,8 @@ def form(request):
             messages.error(request, "Select a Brand Type")
             error = True
 
-        #if error:
-        return render(request, 'walmart/form_new.html')
+        if error:
+            return render(request, 'walmart/form_new.html')
 
 
         form_entry = Vendor_Form(ID=Vendor_Form.objects.count(),
