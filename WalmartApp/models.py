@@ -9,6 +9,7 @@ from PIL import Image, ImageDraw
 import qrcode
 from .utils import create_pdf
 from django.core.validators import RegexValidator
+from django.shortcuts import reverse
 
 
 class Vendor_Form(models.Model):
@@ -47,6 +48,9 @@ class Vendor_Form(models.Model):
         self.pdf.save(filename, File(BytesIO(pdf)), save=False)
 
         return super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('form-detail', args=[self.ID])
 
     def __str__(self):
         return "{}, {}".format(self.vendorName, self.upcEAN)
