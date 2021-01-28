@@ -1,7 +1,7 @@
 from django.shortcuts import render, reverse, redirect
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import DetailView, DeleteView, UpdateView, View
+from django.views.generic import DetailView, UpdateView, View
 from .models import Vendor_Form
 from django.contrib import messages
 from django.conf import settings
@@ -134,13 +134,6 @@ def form(request):
     return render(request, 'walmart/form_new.html')
 
 
-def edit_form(request):
-    context = {
-        'entry': Vendor_Form.objects.first()
-    }
-    return render(request, 'walmart/vender_form.html', context)
-
-
 def view_form(request):
     context = {
         'forms' : Vendor_Form.objects.all()
@@ -154,6 +147,33 @@ def view_form(request):
 class FormDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
     model = Vendor_Form
     template_name = 'walmart/form_detail.html'
+
+    def test_func(self):
+        form = self.get_object()
+        if self.request.user.is_staff:
+            return True
+        return False
+
+
+class FormEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Vendor_Form
+    fields = ["vendorName",
+              "vendorNumber",
+              "senderName",
+              "senderEmail",
+              "senderCountryOfOrigin",
+              "walmartBuyerName",
+              "upcEAN",
+              "itemType",
+              "departmentNumber",
+              "inlaySpec",
+              "inlayDeveloper",
+              "modelName",
+              "brandName",
+              "brandType",
+              "images"
+              ]
+    template_name= 'walmart/form_update.html'
 
     def test_func(self):
         form = self.get_object()
