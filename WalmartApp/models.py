@@ -66,8 +66,4 @@ class Vendor_Form(models.Model):
         return string
 
     def getQRCodeData(self):
-        return str(self.ID) + "\n" + str(self.vendorName) + "\n" + str(self.vendorNumber) + "\n" + str(
-            self.senderName) + "\n" + str(self.senderEmail) + "\n" + str(self.senderCountryOfOrigin) + "\n" + str(
-            self.walmartBuyerName) + "\n" + str(self.upcEAN) + "\n" + str(self.itemType) + "\n" + str(
-            self.departmentNumber) + "\n" + str(self.inlaySpec) + "\n" + str(self.inlayDeveloper) + "\n" + str(
-            self.modelName) + "\n" + str(self.brandName) + "\n" + str(self.brandType) + "\n"
+        return f'http://172.19.28.64:8000/form/view/{self.ID}'
