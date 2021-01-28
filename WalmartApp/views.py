@@ -98,7 +98,11 @@ def form(request):
                                  modelName=request.POST.get("modelName"),
                                  brandName=request.POST.get("brandName"),
                                  brandType=request.POST.get("brandType"),
-                                 images=request.FILES.get("photoFiles"))
+                                 images1=request.FILES.get("photoFiles"),
+                                 images2=request.FILES.get("photoFiles1"),
+                                 images3=request.FILES.get("photoFiles2"),
+                                 images4=request.FILES.get("photoFiles3"),
+                                 images5=request.FILES.get("photoFiles4"))
 
         form_entry.clean_fields()
         form_entry.save()
