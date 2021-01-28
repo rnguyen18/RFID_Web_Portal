@@ -27,7 +27,11 @@ class Vendor_Form(models.Model):
     modelName = models.CharField(max_length=100)
     brandName = models.CharField(max_length=100)
     brandType = models.CharField(max_length=100)
-    images = models.ImageField(upload_to="images", blank=True)
+    images1 = models.ImageField(upload_to="images1", blank=True)
+    images2 = models.ImageField(upload_to="images2", blank=True)
+    images3 = models.ImageField(upload_to="images3", blank=True)
+    images4 = models.ImageField(upload_to="images4", blank=True)
+    images5 = models.ImageField(upload_to="images5", blank=True)
     model_qrcode = models.ImageField(upload_to='qr_codes', blank=True)
     pdf = models.FileField(upload_to='pdfs/', null=True, blank=True)
 
