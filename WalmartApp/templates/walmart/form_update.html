@@ -1,10 +1,176 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "walmart/base.html" %}
+{% block content %}
+
+<div class="container mt-5">
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }}" role="alert">
+              {{ message }}
+          </div>
+        {% endfor %}
+      </ul>
+    {% endif %}
+</div>
+
+<div class="container">
+
+    <h1 class="my-5">Vendor Form</h1>
+
+    <form enctype="multipart/form-data" action="" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_vendorName">Vendor Name in Retail Link</label>
+            <input type="text" class="form-control" name="vendorName" id="id_vendorName" placeholder="Enter Vendor Name" value="{{ object.vendorName }}">
+        </div>
+        <div class="form-group">
+            <label for="id_vendorNumber">Vendor Number in Retail Link</label>
+            <input type="text" class="form-control" name="vendorNumber" id="id_vendorNumber" placeholder="Enter Vendor Number" value="{{ object.vendorNumber }}">
+        </div>
+
+        <div class="form-group">
+            <label for="id_senderName">Sender Name</label>
+            <input type="text" class="form-control" name="senderName" id="id_senderName" placeholder="Enter Sender Name" value="{{ object.senderName }}">
+        </div>
+
+        <div class="form-group">
+            <label for="id_senderEmail">Sender Email</label>
+            <input type="email" class="form-control" name="senderEmail" id="id_senderEmail" placeholder="Enter Sender Email" value="{{ object.senderEmail }}">
+        </div>
+
+        <div class="form-group">
+            <label for="id_senderCountry">Sender Country of Origin</label>
+            <input type="text" class="form-control" name="senderCountryOfOrigin" id="id_senderCountry" placeholder="Enter Sender Country of Origin" value="{{ object.senderCountryOfOrigin }}">
+        </div>
+
+        <div class="form-group">
+            <label for="id_walmartBuyerName">Walmart Buyer Name</label>
+            <input type="text" class="form-control" name="walmartBuyerName" id="id_walmartBuyerName" placeholder="Enter Walmart Buyer Name" value="{{ object.walmartBuyerName }}">
+        </div>
+
+        <div class="form-group">
+            <label for="id_upcEAN">UPC/EAN for Item Submitted</label>
+            <input type="text" class="form-control" name="upcEAN" id="id_upcEAN" placeholder="Enter UPC/EAN" value="{{ object.upcEAN }}">
+        </div>
+
+        <div class="form-group">
+            <label for="id_itemType">Item Type</label>
+            <select class="form-control" name="itemType" id="id_itemType">
+                <option value="">Select Type</option>
+                <option value="apparel" {% if object.itemType == "apparel" %} selected {% endif %}>Apparel</option>
+                <option value="accessories" {% if object.itemType == "accessories" %} selected {% endif %}>Accessories</option>
+                <option value="sunglasses" {% if object.itemType == "sunglasses" %} selected {% endif %}>Sunglasses</option>
+                <option value="footwear" {% if object.itemType == "footwear" %} selected {% endif %}>Footwear</option>
+                <option value="jewelry" {% if object.itemType == "jewelry" %} selected {% endif %}>Jewelry</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="id_departmentNumber">Department Number</label>
+            <select class="form-control" name="departmentNumber" id="id_departmentNumber">
+                <option value="" {% if object.departmentNumber == "" %} selected {% endif %}>Select Department Number</option>
+                <option value="d23" {% if object.departmentNumber == "d23" %} selected {% endif %}>D23</option>
+                <option value="d24" {% if object.departmentNumber == "d24" %} selected {% endif %}>D24</option>
+                <option value="d25" {% if object.departmentNumber == "d25" %} selected {% endif %}>D25</option>
+                <option value="d26" {% if object.departmentNumber == "d26" %} selected {% endif %}>D26</option>
+                <option value="d29" {% if object.departmentNumber == "d29" %} selected {% endif %}>D29</option>
+                <option value="d30" {% if object.departmentNumber == "d30" %} selected {% endif %}>D30</option>
+                <option value="d31" {% if object.departmentNumber == "d31" %} selected {% endif %}>D31</option>
+                <option value="d32" {% if object.departmentNumber == "d32" %} selected {% endif %}>D32</option>
+                <option value="d33" {% if object.departmentNumber == "d33" %} selected {% endif %}>D33</option>
+                <option value="d34" {% if object.departmentNumber == "d34" %} selected {% endif %}>D34</option>
+                <option value="d41" {% if object.departmentNumber == "d41" %} selected {% endif %}>D41</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="id_inlaySpec">Auburn Spec for Inlay Used</label>
+            <select class="form-control" name="inlaySpec" id="id_inlaySpec">
+                <option value="" {% if object.inlaySpec == "" %} selected {% endif %}>Select Spec</option>
+                <option value="w1" {% if object.inlaySpec == "w1" %} selected {% endif %}>W1</option>
+                <option value="w2" {% if object.inlaySpec == "w2" %} selected {% endif %}>W2</option>
+                <option value="w3" {% if object.inlaySpec == "w3" %} selected {% endif %}>W3</option>
+                <option value="w4" {% if object.inlaySpec == "w4" %} selected {% endif %}>W4</option>
+                <option value="w5" {% if object.inlaySpec == "w5" %} selected {% endif %}>W5</option>
+                <option value="w6" {% if object.inlaySpec == "w6" %} selected {% endif %}>W6</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="id_inlayDeveloper">Inlay Developer</label>
+            <select class="form-control" name="inlayDeveloper" id="id_inlayDeveloper">
+                <option value="" {% if object.inlayDeveloper == "" %} selected {% endif %}>Select Inlay Developer</option>
+                <option value="Alien" {% if object.inlayDeveloper == "Alien" %} selected {% endif %}>Alien</option>
+                <option value="Avery Dennison" {% if object.inlayDeveloper == "Avery Dennison" %} selected {% endif %}>Avery Dennison</option>
+                <option value="Boingtech" {% if object.inlayDeveloper == "Boingtech" %} selected {% endif %}>Boingtech</option>
+                <option value="C&C" {% if object.inlayDeveloper == "C&C" %} selected {% endif %}>C&C</option>
+                <option value="Checkpoint" {% if object.inlayDeveloper == "Checkpoint" %} selected {% endif %}>Checkpoint</option>
+                <option value="Data2" {% if object.inlayDeveloper == "Data2" %} selected {% endif %}>Data2</option>
+                <option value="Hangzhou Century Link Technology Co., LTD" {% if object.inlayDeveloper == "Hangzhou Century Link Technology Co., LTD" %} selected {% endif %}>Hangzhou Century Link Technology Co., LTD</option>
+                <option value="Invengo" {% if object.inlayDeveloper == "Invengo" %} selected {% endif %}>Invengo</option>
+                <option value="Laxcen" {% if object.inlayDeveloper == "Laxcen" %} selected {% endif %}>Laxcen</option>
+                <option value="LSIS" {% if object.inlayDeveloper == "LSIS" %} selected {% endif %}>LSIS</option>
+                <option value="Lusem" {% if object.inlayDeveloper == "Lusem" %} selected {% endif %}>Lusem</option>
+                <option value="Sirit" {% if object.inlayDeveloper == "Sirit" %} selected {% endif %}>Sirit</option>
+                <option value="Smartrac" {% if object.inlayDeveloper == "Smartrac" %} selected {% endif %}>Smartrac</option>
+                <option value="SML" {% if object.inlayDeveloper == "SML" %} selected {% endif %}>SML</option>
+                <option value="SS RFID CO., LTD." {% if object.inlayDeveloper == "SS RFID CO., LTD." %} selected {% endif %}>SS RFID CO., LTD.</option>
+                <option value="Tageos" {% if object.inlayDeveloper == "Tageos" %} selected {% endif %}>Tageos</option>
+                <option value="Trace - Tech ID Solutions" {% if object.inlayDeveloper == "Trace - Tech ID Solutions" %} selected {% endif %}>Trace - Tech ID Solutions</option>
+                <option value="Xindeco IOT" {% if object.inlayDeveloper == "Xindeco IOT" %} selected {% endif %}>Xindeco IOT</option>
+                <option value="YFY Group" {% if object.inlayDeveloper == "YFY Group" %} selected {% endif %}>YFY Group</option>
+                <option value="Zebra" {% if object.inlayDeveloper == "Zebra" %} selected {% endif %}>Zebra</option>
+                <option value="Other" {% if object.inlayDeveloper == "Other" %} selected {% endif %}>Other</option>
+            </select>
+        </div>
+
+        <div class="form-row">
+            <label for="id_modelName">Inlay Model Name</label>
+            <input text="text" class="form-control" name="modelName" id="id_modelName" placeholder="Enter Model Name" value="{{ object.modelName }}">
+            <small name="modelNameHelp" class="form-text text-muted">i.e. Maze MU7</small>
+        </div>
+
+        <h2 class="my-5">Brand Information</h2>
+
+        <div class="form-row">
+            <label for="id_brandName">Name</label>
+            <input text="text" class="form-control" name="brandName" id="id_brandName" placeholder="Enter Brand Name" value="{{ object.brandName }}">
+        </div>
+
+        <div class="form-group">
+            <label for="id_brandType">Type</label>
+            <select class="form-control" name="brandType" id="id_brandType">
+                <option value="" {% if object.brandType == "" %} selected {% endif %}>Select Brand Type</option>
+                <option value="Private" {% if object.brandType == "Private" %} selected {% endif %}>Private</option>
+                <option value="Proprietary" {% if object.brandType == "Proprietary" %} selected {% endif %}>Proprietary</option>
+                <option value="Supplier" {% if object.brandType == "Supplier" %} selected {% endif %}>Supplier</option>
+                <option value="National" {% if object.brandType == "National" %} selected {% endif %}>National</option>
+            </select>
+        </div>
+
+        <h2 class="my-5">Image Upload</h2>
+
+        <div class="form-row my-3 custom-file">
+            <input class="custom-file-input" type="file" name="images1" id="id_images1">
+            <label class="custom-file-label" for="id_images1">Upload Photo of Tags(Front)</label>
+        </div>
+        <div class="form-row my-3 custom-file">
+            <input class="custom-file-input" type="file" name="images2" id="id_images2">
+            <label class="custom-file-label" for="id_images2">Upload Photo of Tags(Back)</label>
+        </div>
+        <div class="form-row my-3 custom-file">
+            <input class="custom-file-input" type="file" name="images3" id="id_images3">
+            <label class="custom-file-label" for="id_images3">Upload Photos of Tag Placement on Product</label>
+        </div>
+        <div class="form-row my-3 custom-file">
+            <input class="custom-file-input" type="file" name="images4" id="id_images4">
+            <label class="custom-file-label" for="id_images4">Upload Photos of Tag Placement on Product</label>
+        </div>
+        <div class="form-row my-3 custom-file">
+            <input class="custom-file-input" type="file" name="images5" id="id_images5">
+            <label class="custom-file-label" for="id_images5">Upload Photos of any other information</label>
+        </div>
+
+        <input class="my-3" type="submit" value="Submit">
+    </form>
+</div>
+{% endblock content %}

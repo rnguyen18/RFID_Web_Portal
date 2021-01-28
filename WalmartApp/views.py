@@ -171,7 +171,11 @@ class FormEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
               "modelName",
               "brandName",
               "brandType",
-              "images"
+              "images1",
+              "images2",
+              "images3",
+              "images4",
+              "images5"
               ]
     template_name= 'walmart/form_update.html'
 
