@@ -73,26 +73,40 @@
         <input class="col-6 pl-4" text="text" name="brandType" placeholder="No Brand Type" value="{{ object.brandType }}" disabled>
     </div>
 
+    {% if object.images1 %}
     <div class="row mt-2">
         <label class="col-6 pl-4" for="image1">Image of Tags(Front)</label>
         <img class="col-6 pl-4" src="{{ object.images1.url }}" alt="Product Image" name="image1"/>
     </div>
+    {% endif %}
+
+    {% if object.images2 %}
     <div class="row mt-2">
         <label class="col-6 pl-4" for="image2">Image of Tags(Back)</label>
         <img class="col-6 pl-4" src="{{ object.images2.url }}" alt="Product Image" name="image2"/>
     </div>
+    {% endif %}
+
+    {% if object.images3 %}
     <div class="row mt-2">
         <label class="col-6 pl-4" for="image3">Image of Tag Placement on product</label>
         <img class="col-6 pl-4" src="{{ object.images3.url }}" alt="Product Image" name="image3"/>
     </div>
+    {% endif %}
+
+    {% if object.images4 %}
     <div class="row mt-2">
         <label class="col-6 pl-4" for="image4">Image of Tag Placement on product</label>
         <img class="col-6 pl-4" src="{{ object.images4.url }}" alt="Product Image" name="image4"/>
     </div>
+    {% endif %}
+
+    {% if object.images5 %}
     <div class="row mt-2">
         <label class="col-6 pl-4" for="image5">Image of other information</label>
         <img class="col-6 pl-4" src="{{ object.images5.url }}" alt="Product Image" name="image5"/>
     </div>
+    {% endif %}
 
     <div class="row mt-2">
         <label class="col-6 pl-4" for="qrcode">QR Code</label>
