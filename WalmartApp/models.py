@@ -57,7 +57,7 @@ class Vendor_Form(models.Model):
         return reverse('form-detail', args=[self.ID])
 
     def __str__(self):
-        return "{}, {}".format(self.vendorName, self.upcEAN)
+        return "Form {}".format(self.ID)
 
     def getEAN(self, id):
         string = str(id)
