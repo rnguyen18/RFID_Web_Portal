@@ -78,9 +78,35 @@
             <label>{{ object.brandType }}</label>
         </div>
 
-        <div>
-            <img src="{{ object.images.url }}" alt="Product Image" name="image" />
-        </div>
+        {% if object.images1 %}
+            <div>
+                <img src="{{ object.images1.url }}" alt="Product Image" name="image" />
+            </div>
+        {% endif %}
+
+        {% if object.images2 %}
+            <div>
+                <img src="{{ object.images2.url }}" alt="Product Image" name="image" />
+            </div>
+        {% endif %}
+
+        {% if object.images3 %}
+            <div>
+                <img src="{{ object.images3.url }}" alt="Product Image" name="image" />
+            </div>
+        {% endif %}
+
+        {% if object.images4 %}
+            <div>
+                <img src="{{ object.images4.url }}" alt="Product Image" name="image" />
+            </div>
+        {% endif %}
+
+        {% if object.images5 %}
+            <div>
+                <img src="{{ object.images5.url }}" alt="Product Image" name="image" />
+            </div>
+        {% endif %}
 
         <div>
             <img style="width: 200px;" src="{{ object.model_qrcode.url }}" alt="qrcode" name="qrcode" />
