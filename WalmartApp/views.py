@@ -109,7 +109,7 @@ def form(request):
         messages.success(request, "Form {} was successfully created!".format(form_entry.ID))
 
         subject = 'Vendor Form {}'.format(form_entry.ID)
-        message = 'Hello {},\n\nWe have received your vendor form and it is attached below as well!\n\nThanks,\nAuburn RFID Lab'.format(
+        message = 'Hello {},\n\nYour online submission has been received and is attached above. You will recieve a confirmation email when we recieve your packages. \n\nThanks,\nAuburn RFID Lab'.format(
             form_entry.senderName)
         email_from = settings.EMAIL_HOST_USER
         recipient_list = [form_entry.senderEmail]
