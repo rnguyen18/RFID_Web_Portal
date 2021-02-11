@@ -171,6 +171,7 @@ class FormEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
               "modelName",
               "brandName",
               "brandType",
+              "trackingNumber",
               "images1",
               "images2",
               "images3",
