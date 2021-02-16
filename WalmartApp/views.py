@@ -197,3 +197,6 @@ class FormPDFView(DetailView):
 
         pdf = render_to_pdf('walmart/vendorformtemplate.html', data)
         return HttpResponse(pdf, content_type='application/pdf')
+
+def contactUs(request):
+    return render(request, 'walmart/contactUs.html')

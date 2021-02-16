@@ -8,5 +8,6 @@ urlpatterns = [
     path('form/view/<int:pk>/', FormDetailView.as_view(), name="form-detail"),
     path('form/view/<int:pk>/edit', FormEditView.as_view(), name="form-edit"),
     path('form/view/<int:pk>/pdf/', FormPDFView.as_view(), name="form-pdf"),
-    path('form/new/', views.form, name="form-create")
+    path('form/new/', views.form, name="form-create"),
+    path('contactUs', views.contactUs, name="contactUs")
 ]
