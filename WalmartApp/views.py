@@ -220,12 +220,6 @@ class FormEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
         return super(FormEditView, self).post(self, request, *args, **kwargs)
 
-    def form_valid(self, form):
-        if form.isValid():
-            return super(FormEditView, self).form_valid(form)
-        else:
-            return super(FormEditView, self).form_invalid(form)
-
 
 class FormPDFView(DetailView):
     model = Vendor_Form
