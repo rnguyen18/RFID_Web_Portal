@@ -35,6 +35,7 @@ class Vendor_Form(models.Model):
     images5 = models.ImageField(upload_to="images5", blank=True)
     model_qrcode = models.ImageField(upload_to='qr_codes', blank=True)
     pdf = models.FileField(upload_to='pdfs/', null=True, blank=True)
+    trackingNumber = models.CharField(max_length=100, blank=True)
 
     def save(self, *args, **kwargs):
         qrcode_img = qrcode.make(self.getQRCodeData())

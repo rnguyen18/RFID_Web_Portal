@@ -74,6 +74,11 @@
         <input class="col-6 pl-4" text="text" name="brandType" placeholder="No Brand Type" value="{{ object.brandType }}" disabled>
     </div>
 
+    <div class="row mt-2">
+        <label class="col-6 pl-4" for="trackingNumber">Tracking Number</label>
+        <input class="col-6 pl-4" text="text" name="trackingNumber" placeholder="No Tracking Number" value="{{ object.trackingNumber }}" disabled>
+    </div>
+
     {% if object.images1 %}
     <div class="row mt-2">
         <label class="col-6 pl-4" for="image1">Image of Tags(Front)</label>
