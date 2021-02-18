@@ -79,6 +79,16 @@
         <input class="col-6 pl-4" text="text" name="trackingNumber" placeholder="No Tracking Number" value="{{ object.trackingNumber }}" disabled>
     </div>
 
+    <div class="row mt-2">
+        <label class="col-6 pl-4" for="packagingProvider">Packaging Provider</label>
+        <input class="col-6 pl-4" text="text" name="packagingProvider" placeholder="No Packaging Provider" value="{{ object.packagingProvider }}" disabled>
+    </div>
+
+    <div class="row mt-2">
+        <label class="col-6 pl-4" for="folderNumber">Folder Number</label>
+        <input class="col-6 pl-4" text="text" name="folderNumber" placeholder="No Folder Number" value="{{ object.folderNumber }}" disabled>
+    </div>
+
     {% if object.images1 %}
     <div class="row mt-2">
         <label class="col-6 pl-4" for="image1">Image of Tags(Front)</label>
