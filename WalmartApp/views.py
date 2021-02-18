@@ -157,6 +157,7 @@ class FormDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
 
 class FormEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Vendor_Form
+    messages = []
     fields = ["vendorName",
               "vendorNumber",
               "senderName",
@@ -180,10 +181,50 @@ class FormEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     template_name= 'walmart/form_update.html'
 
     def test_func(self):
-        form = self.get_object()
         if self.request.user.is_staff:
             return True
         return False
+
+    def post(self, request, *args, **kwargs):
+        vNum = request.POST.get("vendorNumber")
+        if not (vNum.isnumeric() and len(vNum) == 6):
+            messages.error(request, "Invalid Vendor Number")
+
+        email = request.POST.get("senderEmail")
+        if not re.search('^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$', email):
+            messages.error(request, "Invalid Email")
+
+        upceanNum = request.POST.get("upcEAN")
+        if not upceanNum.isnumeric():
+            messages.error(request, "Invalid UPC/EAN Number")
+
+        itemType = request.POST.get("itemType")
+        if itemType == "":
+            messages.error(request, "Select an Item Type")
+
+        departmentNumber = request.POST.get("departmentNumber")
+        if departmentNumber == "":
+            messages.error(request, "Select a Department Number")
+
+        inlaySpec = request.POST.get("inlaySpec")
+        if inlaySpec == "":
+            messages.error(request, "Select an Inlay Spec")
+
+        inlayDev = request.POST.get("inlayDeveloper")
+        if inlayDev == "":
+            messages.error(request, "Select an Inlay Developer")
+
+        brandType = request.POST.get("brandType")
+        if brandType == "":
+            messages.error(request, "Select a Brand Type")
+
+        return super(FormEditView, self).post(self, request, *args, **kwargs)
+
+    def form_valid(self, form):
+        if form.isValid():
+            return super(FormEditView, self).form_valid(form)
+        else:
+            return super(FormEditView, self).form_invalid(form)
 
 
 class FormPDFView(DetailView):
