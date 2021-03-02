@@ -106,6 +106,7 @@ def form(request):
 
         form_entry.clean_fields()
         form_entry.save()
+        form_entry.generatePDF()
         messages.success(request, "Form {} was successfully created!".format(form_entry.ID))
 
         subject = 'Vendor Form {}'.format(form_entry.ID)

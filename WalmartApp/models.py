@@ -49,11 +49,6 @@ class Vendor_Form(models.Model):
         canvas.save(buffer2, 'PNG')
         self.model_qrcode.save(fname, File(buffer2), save=False)
         canvas.close()
-
-        pdf = create_pdf({'object': self})
-        filename = "Vendor Form {}.pdf".format(self.ID)
-        self.pdf.save(filename, File(BytesIO(pdf)), save=False)
-
         return super().save(*args, **kwargs)
 
     def get_absolute_url(self):
@@ -70,3 +65,8 @@ class Vendor_Form(models.Model):
 
     def getQRCodeData(self):
         return f'http://172.19.28.64:8000/form/view/{self.ID}'
+
+    def generatePDF(self):
+        pdf = create_pdf({'object': self})
+        filename = "Vendor Form {}.pdf".format(self.ID)
+        self.pdf.save(filename, File(BytesIO(pdf)), save=False)
